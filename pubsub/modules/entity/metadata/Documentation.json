@@ -1,0 +1,60 @@
+{
+    "name": "entity name, maps file name",
+    "caching" : {
+        "get" : { //Get item services
+            "cacheType" : "type of cache ETag, Last-Modified-Date,Paging,None; default is None",
+            "memcached" : "should memcached be used, only for ETag and Paging, default is false"
+        },
+        "getAll" : { //Get all services
+            "cacheType" : "type of cache ETag, Last-Modified-Date,Paging,None; default is None",
+            "memcached" : "should memcached be used, only for ETag and Paging, default is false"
+        }
+    },
+    "structure": [
+        {
+            "attribute": "att Name; _id is reserverd for mongodb>",
+            "type": "att Type: ObjectId(only in mongodb),String,Int,Date,Boolean,Blob,Image >",
+            "defaultSort": "is the defaults sort of the entity, accepts true or false, false is the defaults>",
+            "structure" : "att substructure, is a collection of attributes same as the current"
+        },{
+            "level" : "level name",
+            "structure" : "level structure, is a collection of attributes same as the current"
+        }
+    ],
+    "data": "Collection of documents based on the above structure, is data used to initializade a collection or just sampele data"
+    "form": {
+        "fields": [
+            {
+                "type": "type of field: text,textAutocomplete,textarea,checkbox,select,image,button,save,cancel,grid",
+                "label": "description to be used as label",
+                "attribute": "Maps to the att name, if is a sublevel use . notation ie representante.email",
+                "readOnly": "disable or enable but default, allows true or false, false is the default",
+                "hidden": "att is hidden or not by default, allows true or false, default is false"
+                "columns": [ //for grid types only
+                    {
+                        "type": "type of field: text,textAutocomplete,textarea,checkbox,select,image,button,save,cancel,grid",
+                        "title": "title of the column",
+                        "attribute": "maps att name",
+                        "readOnly": "disable or enable but default, allows true or false, false is the default",
+                        "hidden": "att is hidden or not by default, allows true or false, default is false"
+                    }
+                ]
+            }
+        ]
+    },
+    "selection": {
+        "title": "list title",
+        "defaultSorting":
+            {
+                "attribute": "maps att name, by default is initialize with the att marked with the defaultSort property",
+                "asc": "ascending or descentd, allows true or false, false is the default"
+            },
+        "columns": [
+            {
+                "attribute": "maps att name",
+                "title": "title of the column",
+                "hidden": "att is hidden or not by default, allows true or false, default is false"
+            }
+        ]
+    }
+}

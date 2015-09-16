@@ -1,0 +1,48 @@
+<script type="text/ng-template" id="confirm.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Confirm Delete</h3>
+    </div>
+    <div class="modal-body">
+        Are you sure to delete this record:
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="modal.ok()">Confirm</button>
+        <button class="btn btn-warning" ng-click="modal.cancel()">Cancel</button>
+    </div>
+</script>
+
+<h4>{{list.title}}</h4>
+<div class="row">
+    <div class="col-md-8">
+        <button type="button" class="btn btn-default"><a ng-href="#/form/"><i class="fa fa-plus fa-fw"></i>&nbsp; Add</a></button>
+        <button type="button" class="btn btn-success"><i class="fa fa-file-excel-o fa-fw"></i>&nbsp; XLS</button>
+        <button type="button" class="btn btn-info"><i class="fa fa-file-pdf-o fa-fw"></i>&nbsp; PDF</button>
+    </div>
+    <div class="col-md-4">
+        <input type="text" ng-model="list.search" ng-change="list.searchChanged()" class="form-control" id="list_search" placeholder="Search">
+    </div>
+</div>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th class="col-sm-1" ></th>
+        <th class="col-sm-1"></th>
+        <th ng-repeat="column in list.columns" ng-hide="column.hidden">
+            <a href="" ng-click="list.order(column.attribute)">{{column.title}}</a>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in list.items">
+            <td>
+                <button type="button" class="btn btn-xs btn-default"><a href="" ng-click="list.delete(item._id)"><i class="fa fa-trash-o fa-fw"></i></a></button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-xs btn-default"><a ng-href="#/form/{{item._id}}"><i class="fa fa-pencil fa-fw"></i></a></button>
+            </td>
+            <td ng-repeat="column in list.columns" ng-hide="column.hidden">{{list.utils.getProp(item,column.attribute)}}</td>
+            <!--<td><a ng-href="#/detail/{{item.id}}">{{item.name}}</a></td>-->
+        </tr>
+    </tbody>
+</table>
+<pagination total-items="list.total" items-per-page="list.pageSize" ng-model="list.currentPage" ng-change="list.pageChange()" class="pagination-sm" boundary-links="true" rotate="false"></pagination>

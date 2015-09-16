@@ -1,0 +1,104 @@
+<!--also suitable for creation-->
+<span ng-switch on="field.type">
+  <span ng-switch-when="hidden">
+    <input
+            ng-model="field.model"
+            type="hidden"
+            />
+  </span>
+  <span ng-switch-when="text">
+    <label for="{{field.attribute}}">{{ field.label }}</label>
+    <input
+            id = "{{field.attribute}}"
+            ng-model="field.model"
+            ng-class="field.class"
+            ng-readonly="field.readOnly"
+            type="text"
+            />
+  </span>
+  <span ng-switch-when="textAutocomplete">
+    <label for="{{field.attribute}}">{{ field.label }}</label>
+    <angucomplete-alt
+            id="{{field.attribute}}"
+            placeholder="Search"
+            pause="400"
+            selected-object="field.selectedObject"
+            remote-url="{{ field.url }}"
+            remote-url-data-field="data"
+            title-field="{{ field.title }}"
+            description-field="{{ field.description }}"
+            image-field="{{ field.image }}"
+            key-field="_id"
+            input-class="form-control form-control-small"
+            initial-value="field.selectedObject"/>
+  </span>
+  <span ng-switch-when="textarea">
+    <label for="{{field.attribute}}">{{ field.label }}</label>
+    <textarea
+            id = "{{field.attribute}}"
+            ng-model="field.model"
+            ng-class="field.class"
+            ></textarea>
+  </span>
+
+  <span ng-switch-when="checkbox">
+      <label for="{{field.attribute}}">{{ field.label }}</label>
+      <input
+              id = "{{field.attribute}}"
+              ng-model="field.model"
+              ng-class="field.class"
+              ng-checked="record.item[field.name]"
+              type="checkbox"
+              />
+  </span>
+  <span ng-switch-when="select">
+    <label for="{{field.attribute}}">{{ field.label }}</label>
+    <select
+            id = "{{field.attribute}}"
+            ng-model="field.model"
+            ng-class="field.class"
+            ng-options="item.id as item.name for item in field.type.options"
+            ></select>
+  </span>
+
+  <span ng-switch-when="image">
+    <div ng-show="field.uploader.isHTML5">
+        <div class="well my-drop-zone">
+            <div ng-repeat="item in field.uploader.queue">
+                <div ng-show="field.uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+                <button ng-click="item.upload()">upload</button>
+            </div>
+            <input type="file" nv-file-select="" uploader="field.uploader"  />
+        </div>
+    </div>
+  </span>
+
+  <span ng-switch-when="button">
+    <button
+            type="button"
+            ng-class="field.class">
+            {{ field.caption }}
+    </button>
+  </span>
+  <span ng-switch-when="save">
+    <button
+            type="button"
+            ng-class="field.class"
+            ng-click="record.save()">
+        {{ field.caption }}
+    </button>
+  </span>
+  <span ng-switch-when="cancel">
+    <button
+            type="button"
+            ng-class="field.class"
+            ng-click="record.cancel()">
+        {{ field.caption }}
+    </button>
+  </span>
+
+  <!--You can add more custom widget types needed for your project-->
+  <span ng-switch-default>
+      <span>Unknown widget</span>
+  </span>
+</span>

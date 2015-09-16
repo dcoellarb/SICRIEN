@@ -1,0 +1,10 @@
+<label>{{detail.item.text}}</label>
+<br>
+<tabset>
+    <tab ng-repeat="tab in detail.tabs" heading="{{tab.title}}" active="tab.active" disable="tab.disabled">
+        <div ng-include="tab.template"></div>
+    </tab>
+</tabset>
+<br>
+<a href="#/" class="btn">Cancel</a>
+

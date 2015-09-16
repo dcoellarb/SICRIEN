@@ -1,0 +1,11 @@
+<form>
+    <div ng-repeat="field in record.fields" ng-class="field.containerClass">
+        <ng-include src="'templates/fields.html'"/>
+    </div>
+</form>
+
+<style type="text/css">
+    input.ng-invalid.ng-touched.ng-invalid-required {
+        background-color: #FA787E;
+    }
+</style>

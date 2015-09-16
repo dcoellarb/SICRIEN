@@ -1,0 +1,1 @@
+{"name":"TestCustomers","structure":[{"attribute":"_id","type":"ObjectId"},{"attribute":"name","type":"String","defaultSort":true},{"level":"permissions","structure":[{"attribute":"name","type":"String"}]}],"data":[{"name":"Test customer","permissions":[{"name":"Administrator Home"}]}]}
